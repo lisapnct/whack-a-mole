@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+  font-family: Avenir;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.header {
+    text-align: center;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 0px;
+  column-gap: 0px;
+  width: 600px;
+  height: 600px;
+}
+
+.square {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.mole {
+    background-image: url('./img/mole.svg');
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
