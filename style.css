@@ -30,6 +30,7 @@ body {
   column-gap: 0px;
   width: 600px;
   height: 600px;
+  /* background-color: greenyellow; */
 }
 
 .square {
@@ -43,4 +44,16 @@ body {
     background-image: url('./img/mole.svg');
     background-repeat: no-repeat;
     background-size: cover; 
+}
+
+#score {
+    color: green;
+    border: 1px solid green;
+    padding: 2px;
+}
+
+#time-left {
+    color: red;
+    border: 1px solid red;
+    padding: 2px;
 }
