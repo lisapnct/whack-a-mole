@@ -4,56 +4,96 @@
 }
 
 body {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .grid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .header {
-    text-align: center;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-around;
+  text-align: center;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
 }
 
 .grid-container {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   row-gap: 0px;
   column-gap: 0px;
   width: 600px;
-  height: 600px;
-  /* background-color: greenyellow; */
+  height: 450px;
+  cursor: pointer;
+  /* background-image: url("./img/grid-background.svg"); */
 }
 
 .square {
-  width: 200px;
-  height: 200px;
-  border: 1px solid black;
-  cursor: pointer;
+  width: 150px;
+  height: 150px;
 }
 
-.mole {
-    background-image: url('./img/mole.svg');
-    background-repeat: no-repeat;
-    background-size: cover; 
+.hole {
+  background: url("./img/moles-sprite.png") 0px 0px;
+  height: 108px;
+  width: 103px;
+  margin: 0px;
+}
+
+.bob-out {
+  background: url("./img/bob-out.png");
+  width: 103px;
+  height: 108px;
+  animation: bob-out 1.5s steps(4);
+}
+
+.mole-out {
+  background: url("./img/moles-sprite.png");
+  width: 103px;
+  height: 108px;
+  animation: mole-out 1.5s steps(4);
+}
+
+.mole-hit {
+  background: url("./img/mole-hit.png");
+  width: 103px;
+  height: 108px;
 }
 
 #score {
-    color: green;
-    border: 1px solid green;
-    padding: 2px;
+  color: green;
+  border: 1px solid green;
+  padding: 2px;
 }
 
-#time-left {
-    color: red;
-    border: 1px solid red;
-    padding: 2px;
+#lives {
+  color: red;
+  /* border: 1px solid red; */
+  /* padding: 2px; */
+}
+
+/* ANIMATE MOLEs */
+
+@keyframes mole-out {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: 412px;
+  }
+}
+
+@keyframes bob-out {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: 412px;
+  }
 }
