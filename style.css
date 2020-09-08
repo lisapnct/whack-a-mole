@@ -13,6 +13,7 @@ html {
   padding: 0px;
   background: black;
   height: 100vh;
+  /* border: 3px solid red */
 }
 
 .grid {
@@ -22,27 +23,58 @@ html {
   /* margin-bottom: 20px; */
   position: relative;
   top: 65px;
+  /* border: 3px solid gray; */
 }
 
 .header {
   text-align: center;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-around;
   color: white;
   position: relative;
   top: 20px;
+  /* padding: 0px 15px 0px 15px; */
+  /* border: 3px solid gray; */
 }
+
+.modes-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* width: 200px; */
+}
+
+#more-lives-btn {
+  visibility: hidden;
+  color: red;
+  font-size: 10px;
+  margin: 5px;
+  padding: 5px;
+}
+
+#more-life-label {
+  visibility: hidden;
+  font-size: 10px;
+}
+
+/* #super-hammer-btn {
+  visibility: hidden;
+  color: green;
+} */
 
 .grid-container {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   row-gap: 0px;
   column-gap: 0px;
-  width: 600px;
+  width: 900px;
   height: 450px;
   cursor: pointer;
+  /* border: 3px solid gray; */
 }
 
 .square {
@@ -61,29 +93,44 @@ html {
   text-align: center;
 }
 
-.bob-out {
+.bob {
   background: url("./img/bob-out.png");
   width: 103px;
   height: 108px;
-  animation: bob-out 1.5s steps(4);
+  animation: bob 1.5s steps(4);
 }
 
-.mole-out {
+.bob-hit {
+  background: url("./img/bob-hit.png");
+  background-repeat: no-repeat;
+  width: 103px;
+  height: 108px;
+}
+
+.mole {
   background: url("./img/moles-sprite.png");
   width: 103px;
   height: 108px;
-  animation: mole-out 1.5s steps(4);
+  animation: mole 1.5s steps(4);
 }
 
 .mole-hit {
   background: url("./img/mole-hit.png");
+  background-repeat: no-repeat;
   width: 103px;
   height: 108px;
 }
 
+.coin {
+  background: url("./img/coins.png");
+  width: 103px;
+  height: 108px;
+  animation: coin 1.5s steps(4);
+}
+
 #score {
   color: green;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 #lives {
@@ -91,18 +138,23 @@ html {
   font-size: 25px;
 }
 
+#coins {
+  color: yellow;
+  font-size: 25px;
+}
+
 /* ANIMATE MOLEs */
 
-@keyframes mole-out {
+@keyframes mole {
   from {
-    background-position: 412px;
+    background-position: 0px;
   }
   to {
-    background-position: 0px;
+    background-position: 412px;
   }
 }
 
-@keyframes bob-out {
+@keyframes bob {
   from {
     background-position: 0px;
   }
@@ -110,6 +162,16 @@ html {
     background-position: 412px;
   }
 }
+
+@keyframes coin {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: 412px;
+  }
+}
+
 
 /* @keyframes update-score {
   from {
