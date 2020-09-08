@@ -1,18 +1,15 @@
-// const square = document.querySelectorAll(".square");
 const hole = document.querySelectorAll(".hole");
 const mole = document.querySelectorAll(".mole");
-// const rabbit = document.querySelectorAll(".rabbit");
 const livesLeft = document.querySelector("#fas");
 const score = document.querySelector("#score");
 
 let totalLives = 3;
 let finalScore = 0;
-// let currentTime = 30;
 
 function displayMole() {
   let randomPosition = hole[Math.floor(Math.random() * 12)];
   // check if randomPosition already has bob class
-  if (randomPosition.classList.contains('bob-out')) {
+  if (randomPosition.classList.contains("bob-out")) {
     displayMole();
   } else {
     randomPosition.classList.add("mole-out");
@@ -26,18 +23,17 @@ function hideMole() {
 }
 
 function moveMole() {
-  setInterval(displayMole, 1200);
-  setInterval(hideMole, 2400);
+  setInterval(displayMole, 3000);
+  setInterval(hideMole, 6000);
 }
 
 function displayBob() {
   let randomPosition = hole[Math.floor(Math.random() * 12)];
-  if (randomPosition.classList.contains('mole-out')) {
-    displayBob();
+  if (randomPosition.classList.contains("mole-out")) {
+    displayBob(); // avoid putting mole out AND bob out on the same hole
   } else {
     randomPosition.classList.add("bob-out");
   }
-  // to avoid displaying rabbit on mole: if randomPosition !contains "mole" class = display else displayRabbit() (= loop?)
 }
 
 function hideBob() {
@@ -53,27 +49,38 @@ function moveBob() {
 }
 
 function countLives() {
+  // I run this function when bob is clicked so:
   totalLives = totalLives - 1;
+  console.log(`lives left: ` + totalLives);
 
-  if (totalLives === 0) {
+  if (totalLives === 2) {
+    document.getElementById("heart-one").classList.replace("fas", "far");
+  } else if (totalLives === 1) {
+    document.getElementById("heart-two").classList.replace("fas", "far");
+  } else if (totalLives === 0) {
+    document.getElementById("heart-three").classList.replace("fas", "far");
     alert("GAME OVER!! Your final score is: " + finalScore + "points");
   }
 }
 
-// calculate score depending on which square the user clicked (based on classList)
+// calculate score depending on which hole the user clicked
 function calculateScore(clickedHole) {
   // on click on a mole : +1 point
   if (clickedHole.classList.contains("mole-out")) {
     console.log("it's a mole");
-    clickedHole.classList.add("mole-hit");
     finalScore = finalScore + 1;
     score.innerText = finalScore;
+    console.log(`score = ${finalScore}`);
+    clickedHole.classList.add("mole-hit");
   }
-
-  //on click on a rabbit: -2 points
+  //on click on Bob: -1 point && -1 life
   if (clickedHole.classList.contains("bob-out")) {
     console.log("it's bob!!");
-    finalScore = finalScore - 1;
+    if (finalScore >= 1) {
+      finalScore = finalScore - 1;
+      score.innerText = finalScore;
+      console.log(`score = ${finalScore}`);
+    }
     countLives();
   }
 }
@@ -94,4 +101,3 @@ window.addEventListener("load", () => {
 
 // -------------
 // - score should not be < 0
-// - add a if(...) on set mole/rabbit class to avoid square with mole + rabbit classes

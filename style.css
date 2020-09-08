@@ -1,18 +1,27 @@
+@font-face {
+  font-family: earlyGameBoy;
+  src: url("./early-gameboy.ttf");
+}
 * {
   box-sizing: border-box;
-  font-family: Avenir;
+  font-family: earlyGameBoy;
 }
 
-body {
+body,
+html {
   margin: 0px;
   padding: 0px;
+  background: black;
+  height: 100vh;
 }
 
 .grid {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  position: relative;
+  top: 65px;
 }
 
 .header {
@@ -20,6 +29,9 @@ body {
   display: flex;
   align-items: baseline;
   justify-content: space-around;
+  color: white;
+  position: relative;
+  top: 20px;
 }
 
 .grid-container {
@@ -31,12 +43,14 @@ body {
   width: 600px;
   height: 450px;
   cursor: pointer;
-  /* background-image: url("./img/grid-background.svg"); */
 }
 
 .square {
   width: 150px;
   height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hole {
@@ -44,6 +58,7 @@ body {
   height: 108px;
   width: 103px;
   margin: 0px;
+  text-align: center;
 }
 
 .bob-out {
@@ -68,24 +83,22 @@ body {
 
 #score {
   color: green;
-  border: 1px solid green;
-  padding: 2px;
+  font-size: 30px;
 }
 
 #lives {
   color: red;
-  /* border: 1px solid red; */
-  /* padding: 2px; */
+  font-size: 25px;
 }
 
 /* ANIMATE MOLEs */
 
 @keyframes mole-out {
   from {
-    background-position: 0px;
+    background-position: 412px;
   }
   to {
-    background-position: 412px;
+    background-position: 0px;
   }
 }
 
@@ -97,3 +110,12 @@ body {
     background-position: 412px;
   }
 }
+
+/* @keyframes update-score {
+  from {
+    font-size: 25px;
+  }
+  to {
+    font-size: 40px;
+  }
+} */
