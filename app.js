@@ -8,25 +8,16 @@ const buyLifeBtn = document.querySelector("#more-lives-btn");
 const buyLifeBtnLabel = document.querySelector("#more-life-label");
 const gameOverWindow = document.querySelector("#game-over-window");
 const restartBtn = document.querySelector(".restart-btn");
+const container = document.querySelector(".grid-container");
 
 let totalLives = 3;
 let totalCoins = 0;
 let finalScore = 0;
 
+var moleDisplayIntervalID;
+var moleRemoveIntervalID;
+
 // DISPLAY MOLES ON THE GRID
-
-function displayMole() {
-  let randomPosition = hole[Math.floor(Math.random() * 18)];
-  // check if randomPosition already has bob or coin class
-  if (randomPosition.classList.contains("bob")) {
-    displayMole();
-  } else if (randomPosition.classList.contains("coin")) {
-    displayMole();
-  } else {
-    randomPosition.classList.add("mole");
-  }
-}
-
 // function hideMole() {
 //   hole.forEach((hole) => {
 //     if (hole.classList.contains("mole")) {
@@ -34,6 +25,21 @@ function displayMole() {
 //     }
 //   });
 // }
+
+function displayMole(himeTiming) {
+  const available = container.querySelectorAll(
+    ".hole:not(.bob), .hole:not(.coin)"
+  );
+  const randomPosition = available[Math.floor(Math.random() * 18)];
+  randomPosition.classList.add("mole");
+  randomPosition.onanimationend = (evt) => {
+    console.log("end anim !!!");
+    
+      moleRemoveIntervalID = setTimeout(() => removeOneMole(randomPosition), himeTiming);
+    
+  }
+  //clbk(randomPosition);
+}
 
 function removeMole() {
   console.log("clearing moles");
@@ -43,30 +49,42 @@ function removeMole() {
   });
 }
 
+function removeOneMole(hole) {
+  hole.classList.remove("mole");
+  hole.classList.remove("mole-hit");
+}
+
 // moles should move faster and faster depending on score
 const mySetInterval = (clbk, timing) => setInterval(clbk, timing);
-const clearInterval = (id) => clearInterval(id);
+//const clearInterval = (id) => clearInterval(id);
 
-var moleDisplayIntervalID = mySetInterval(displayMole, 2000);
-var moleRemoveIntervalID = mySetInterval(removeMole, 5000);
-// var moleHideIntervalID = mySetInterval(hideMole, 6000);
+
+function removeIntervals() {
+  clearInterval(moleDisplayIntervalID);
+  //clearInterval(moleRemoveIntervalID);
+  clearTimeout(moleRemoveIntervalID);
+  console.log("removed intervals done");
+}
+
+function increaseSpeed(displayTiming, himeTiming) {
+ // moleDisplayIntervalID = mySetInterval(() => {
+    displayMole(himeTiming);
+  //}, displayTiming);
+  //moleRemoveIntervalID = mySetInterval(removeMole, himeTiming);
+}
 
 function moveMole() {
   if (finalScore > 5 && finalScore < 10) {
-    clearInterval(moleDisplayIntervalID);
-    moleDisplayIntervalID = mySetInterval(displayMole, 2000);
-    console.log("speed lvl 2: " + timerDisplay + timerRemove);
-
-    clearInterval(moleRemoveIntervalID);
-    moleRemoveIntervalID = mySetInterval(removeMole, 4000);
+    removeIntervals();
+    increaseSpeed(2000, 2500);
   } else if (finalScore > 10) {
-    clearInterval(moleDisplayIntervalID);
-    moleDisplayIntervalID = mySetInterval(displayMole, 2000);
-    console.log("speed lvl 3: " + timerDisplay + timerRemove);
-
-    clearInterval(moleRemoveIntervalID);
-    moleRemoveIntervalID = mySetInterval(removeMole, 3000);
+    removeIntervals();
+    increaseSpeed(2000, 1000);
+  } else {
+    increaseSpeed(2000, 5000);
   }
+  //moveMole()
+  //requestAnimationFrame(moveMole);
 }
 
 // DISPLAY BOB ON THE GRID
@@ -192,7 +210,7 @@ function calculateScore(clickedHole) {
     finalScore = finalScore + 1;
     score.innerText = finalScore;
     console.log(`score = ${finalScore}`);
-    //moveMole();
+    moveMole();
   }
   //on click on Bob: -1 point && -1 life
   if (clickedHole.classList.contains("bob")) {
@@ -238,6 +256,7 @@ restartBtn.addEventListener("click", () => window.location.reload(true));
 
 // LAUNCH THE GAME ON PAGE LOAD
 
-moveMole();
+//var frameId = requestAnimationFrame(moveMole);
+moveMole()
 moveBob();
 moveCoin();
