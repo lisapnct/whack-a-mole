@@ -130,6 +130,7 @@ function displayCoin() {
 function hideCoin() {
   hole.forEach((hole) => {
     hole.classList.remove("coin");
+    hole.classList.remove("coin-hit");
   });
 }
 
@@ -150,7 +151,7 @@ function calculateLives(clickedHole) {
 }
 
 function displayBuyLifeBtn() {
-  if (totalCoins >= 5 && totalLives < 3) {
+  if (totalCoins >= 2 && totalLives < 3) {
     buyLifeBtn.style.visibility = "visible";
     buyLifeBtnLabel.style.visibility = "visible";
   } else {
@@ -161,7 +162,7 @@ function displayBuyLifeBtn() {
 
 function buyLife() {
   console.log("wants to buy one life");
-  totalCoins = totalCoins - 5;
+  totalCoins = totalCoins - 2;
   coins.innerText = totalCoins;
   totalLives = totalLives + 1;
   displayLives();
@@ -202,8 +203,7 @@ function calculateScore(clickedHole) {
   // on click on a mole : +1 point
   console.log("clicked on: " + clickedHole.classList);
   if (clickedHole.classList.contains("mole")) {
-    clickedHole.classList.remove("mole", "mole-hide");
-    clickedHole.classList.add("mole-hit");
+    clickedHole.classList.replace("mole", "mole-hit");
     console.log("new class list: " + clickedHole.classList);
     finalScore = finalScore + 1;
     score.innerText = finalScore;
@@ -227,6 +227,7 @@ function calculateScore(clickedHole) {
 
 function calculateCoins(clickedHole) {
   if (clickedHole.classList.contains("coin")) {
+    clickedHole.classList.replace("coin", "coin-hit");
     console.log("it's a coin!");
     totalCoins = totalCoins + 1;
     coins.innerText = totalCoins;

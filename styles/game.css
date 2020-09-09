@@ -13,7 +13,6 @@ html {
   padding: 0px;
   background: black;
   height: 100vh;
-  /* border: 3px solid red */
 }
 
 a {
@@ -121,13 +120,13 @@ a {
   animation: mole 1.5s steps(4);
 }
 
-.mole-hide {
+/* .mole-hide {
   background: url("../img/moles-sprite.png");
   width: 103px;
   height: 108px;
   background-position: 412px;
   animation: mole-hide 1.5s steps(4);
-}
+} */
 
 .mole-hit {
   background: url("../img/mole-hit.png");
@@ -142,6 +141,13 @@ a {
   height: 108px;
   background-position: 103px;
   animation: coin 1.5s steps(4);
+}
+
+.coin-hit {
+  background: url("../img/coin-hit.png");
+  background-repeat: no-repeat;
+  width: 103px;
+  height: 108px;
 }
 
 #score {
@@ -196,6 +202,7 @@ a {
 .restart-btn a {
   text-decoration: none;
   color: black;
+  cursor: pointer;
 }
 
 .game-over h1 {
@@ -203,6 +210,14 @@ a {
   color: white;
   font-size: 60px;
   margin-bottom: 10px;
+}
+
+.game-over p {
+  font-size: 20px;
+}
+
+.hidden {
+  display: none;
 }
 
 /* ANIMATE MOLES */
