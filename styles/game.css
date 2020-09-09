@@ -38,7 +38,7 @@ a {
   justify-content: space-around;
   color: white;
   position: relative;
-  top: 5Qpx;
+  top: 5px;
   /* padding: 0px 15px 0px 15px; */
   /* border: 3px solid gray; */
 }
@@ -54,10 +54,15 @@ a {
 
 #more-lives-btn {
   visibility: hidden;
-  color: red;
   font-size: 10px;
   margin: 5px;
-  padding: 5px;
+  padding: 7px;
+  background-color: white;
+}
+
+#more-lives-btn .fas {
+  color: red;
+  font-size: 12px;
 }
 
 #more-life-label {
