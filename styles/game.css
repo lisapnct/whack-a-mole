@@ -107,6 +107,7 @@ a {
   background: url("../img/bob-out.png");
   width: 103px;
   height: 108px;
+  background-position: 103px;
   animation: bob 1.5s steps(4);
 }
 
@@ -121,7 +122,16 @@ a {
   background: url("../img/moles-sprite.png");
   width: 103px;
   height: 108px;
+  background-position: 103px;
   animation: mole 1.5s steps(4);
+}
+
+.mole-hide {
+  background: url("../img/moles-sprite.png");
+  width: 103px;
+  height: 108px;
+  background-position: 412px;
+  animation: mole-hide 1.5s steps(4);
 }
 
 .mole-hit {
@@ -135,6 +145,7 @@ a {
   background: url("../img/coins.png");
   width: 103px;
   height: 108px;
+  background-position: 103px;
   animation: coin 1.5s steps(4);
 }
 
@@ -203,6 +214,15 @@ a {
 
 @keyframes mole {
   from {
+    background-position: 412px;
+  }
+  to {
+    background-position: 0px;
+  }
+}
+
+@keyframes mole-hide {
+  from {
     background-position: 0px;
   }
   to {
@@ -212,19 +232,19 @@ a {
 
 @keyframes bob {
   from {
-    background-position: 0px;
+    background-position: 412px;
   }
   to {
-    background-position: 412px;
+    background-position: 0px;
   }
 }
 
 @keyframes coin {
   from {
-    background-position: 0px;
+    background-position: 412px;
   }
   to {
-    background-position: 412px;
+    background-position: 0px;
   }
 }
 

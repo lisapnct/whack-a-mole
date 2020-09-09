@@ -27,7 +27,15 @@ function displayMole() {
   }
 }
 
-function hideMole() {
+// function hideMole() {
+//   hole.forEach((hole) => {
+//     if (hole.classList.contains("mole")) {
+//       hole.classList.replace("mole", "mole-hide");
+//     }
+//   });
+// }
+
+function removeMole() {
   console.log("clearing moles");
   hole.forEach((hole) => {
     hole.classList.remove("mole");
@@ -36,21 +44,29 @@ function hideMole() {
 }
 
 // moles should move faster and faster depending on score
+const mySetInterval = (clbk, timing) => setInterval(clbk, timing);
+const clearInterval = (id) => clearInterval(id);
+
+var moleDisplayIntervalID = mySetInterval(displayMole, 2000);
+var moleRemoveIntervalID = mySetInterval(removeMole, 5000);
+// var moleHideIntervalID = mySetInterval(hideMole, 6000);
+
 function moveMole() {
-  if (finalScore < 5) {
-    setInterval(displayMole, 5000);
-    setInterval(hideMole, 10000);
-  } else if (finalScore > 5) {
-    setInterval(displayMole, 5000);
-    setInterval(hideMole, 8000);
+  if (finalScore > 5 && finalScore < 10) {
+    clearInterval(moleDisplayIntervalID);
+    moleDisplayIntervalID = mySetInterval(displayMole, 2000);
+    console.log("speed lvl 2: " + timerDisplay + timerRemove);
+
+    clearInterval(moleRemoveIntervalID);
+    moleRemoveIntervalID = mySetInterval(removeMole, 4000);
   } else if (finalScore > 10) {
-    setInterval(displayMole, 5000);
-    setInterval(hideMole, 6000);
+    clearInterval(moleDisplayIntervalID);
+    moleDisplayIntervalID = mySetInterval(displayMole, 2000);
+    console.log("speed lvl 3: " + timerDisplay + timerRemove);
+
+    clearInterval(moleRemoveIntervalID);
+    moleRemoveIntervalID = mySetInterval(removeMole, 3000);
   }
-  // else if (finalScore > 15) {
-  //   setInterval(displayMole, 1000);
-  //   setInterval(hideMole, 3000);
-  // }
 }
 
 // DISPLAY BOB ON THE GRID
@@ -76,7 +92,7 @@ function hideBob() {
 
 function moveBob() {
   setInterval(displayBob, 4000);
-  setInterval(hideBob, 7000);
+  setInterval(hideBob, 10000);
 }
 
 // DISPLAY COINS ON THE GRID
@@ -100,7 +116,7 @@ function hideCoin() {
 
 function moveCoin() {
   setInterval(displayCoin, 7000);
-  setInterval(hideCoin, 8500);
+  setInterval(hideCoin, 5000);
 }
 
 // CALCULATE AND DISPLAY LIVES (TOP RIGHT) + BUY LIFE BTN
@@ -166,14 +182,17 @@ function gameOver() {
 function calculateScore(clickedHole) {
   // on click on a mole : +1 point
   console.log("clicked on: " + clickedHole.classList);
-  if (clickedHole.classList.contains("mole")) {
-    clickedHole.classList.replace("mole", "mole-hit");
-    // console.log("it's a mole");
+  if (
+    clickedHole.classList.contains("mole") ||
+    clickedHole.classList.contains("mole-hide")
+  ) {
+    clickedHole.classList.remove("mole", "mole-hide");
+    clickedHole.classList.add("mole-hit");
     console.log("new class list: " + clickedHole.classList);
     finalScore = finalScore + 1;
     score.innerText = finalScore;
     console.log(`score = ${finalScore}`);
-    moveMole();
+    //moveMole();
   }
   //on click on Bob: -1 point && -1 life
   if (clickedHole.classList.contains("bob")) {
@@ -218,8 +237,7 @@ buyLifeBtn.addEventListener("click", buyLife);
 restartBtn.addEventListener("click", () => window.location.reload(true));
 
 // LAUNCH THE GAME ON PAGE LOAD
-window.addEventListener("load", () => {
-  moveMole();
-  moveBob();
-  moveCoin();
-});
+
+moveMole();
+moveBob();
+moveCoin();
