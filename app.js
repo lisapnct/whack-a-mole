@@ -34,10 +34,12 @@ function displayMole(himeTiming) {
   randomPosition.classList.add("mole");
   randomPosition.onanimationend = (evt) => {
     console.log("end anim !!!");
-    
-      moleRemoveIntervalID = setTimeout(() => removeOneMole(randomPosition), himeTiming);
-    
-  }
+
+    moleRemoveIntervalID = setTimeout(
+      () => removeOneMole(randomPosition),
+      himeTiming
+    );
+  };
   //clbk(randomPosition);
 }
 
@@ -58,7 +60,6 @@ function removeOneMole(hole) {
 const mySetInterval = (clbk, timing) => setInterval(clbk, timing);
 //const clearInterval = (id) => clearInterval(id);
 
-
 function removeIntervals() {
   clearInterval(moleDisplayIntervalID);
   //clearInterval(moleRemoveIntervalID);
@@ -67,9 +68,9 @@ function removeIntervals() {
 }
 
 function increaseSpeed(displayTiming, himeTiming) {
- // moleDisplayIntervalID = mySetInterval(() => {
+  moleDisplayIntervalID = mySetInterval(() => {
     displayMole(himeTiming);
-  //}, displayTiming);
+  }, displayTiming);
   //moleRemoveIntervalID = mySetInterval(removeMole, himeTiming);
 }
 
@@ -81,7 +82,7 @@ function moveMole() {
     removeIntervals();
     increaseSpeed(2000, 1000);
   } else {
-    increaseSpeed(2000, 5000);
+    increaseSpeed(5000, 5000);
   }
   //moveMole()
   //requestAnimationFrame(moveMole);
@@ -200,10 +201,7 @@ function gameOver() {
 function calculateScore(clickedHole) {
   // on click on a mole : +1 point
   console.log("clicked on: " + clickedHole.classList);
-  if (
-    clickedHole.classList.contains("mole") ||
-    clickedHole.classList.contains("mole-hide")
-  ) {
+  if (clickedHole.classList.contains("mole")) {
     clickedHole.classList.remove("mole", "mole-hide");
     clickedHole.classList.add("mole-hit");
     console.log("new class list: " + clickedHole.classList);
@@ -257,6 +255,6 @@ restartBtn.addEventListener("click", () => window.location.reload(true));
 // LAUNCH THE GAME ON PAGE LOAD
 
 //var frameId = requestAnimationFrame(moveMole);
-moveMole()
+moveMole();
 moveBob();
 moveCoin();
