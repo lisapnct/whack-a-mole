@@ -185,7 +185,6 @@ hole.forEach((hole) => {
 buyLifeBtn.addEventListener("click", buyLife);
 
 window.addEventListener("load", () => {
-  alert("START GAME");
   moveMole();
   moveBob();
   moveCoin();

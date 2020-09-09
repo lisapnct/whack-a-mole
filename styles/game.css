@@ -1,6 +1,6 @@
 @font-face {
   font-family: earlyGameBoy;
-  src: url("./early-gameboy.ttf");
+  src: url("../early-gameboy.ttf");
 }
 * {
   box-sizing: border-box;
@@ -14,6 +14,11 @@ html {
   background: black;
   height: 100vh;
   /* border: 3px solid red */
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 
 .grid {
@@ -33,7 +38,7 @@ html {
   justify-content: space-around;
   color: white;
   position: relative;
-  top: 20px;
+  top: 5Qpx;
   /* padding: 0px 15px 0px 15px; */
   /* border: 3px solid gray; */
 }
@@ -86,7 +91,7 @@ html {
 }
 
 .hole {
-  background: url("./img/moles-sprite.png") 0px 0px;
+  background: url("../img/moles-sprite.png") 0px 0px;
   height: 108px;
   width: 103px;
   margin: 0px;
@@ -94,35 +99,35 @@ html {
 }
 
 .bob {
-  background: url("./img/bob-out.png");
+  background: url("../img/bob-out.png");
   width: 103px;
   height: 108px;
   animation: bob 1.5s steps(4);
 }
 
 .bob-hit {
-  background: url("./img/bob-hit.png");
+  background: url("../img/bob-hit.png");
   background-repeat: no-repeat;
   width: 103px;
   height: 108px;
 }
 
 .mole {
-  background: url("./img/moles-sprite.png");
+  background: url("../img/moles-sprite.png");
   width: 103px;
   height: 108px;
   animation: mole 1.5s steps(4);
 }
 
 .mole-hit {
-  background: url("./img/mole-hit.png");
+  background: url("../img/mole-hit.png");
   background-repeat: no-repeat;
   width: 103px;
   height: 108px;
 }
 
 .coin {
-  background: url("./img/coins.png");
+  background: url("../img/coins.png");
   width: 103px;
   height: 108px;
   animation: coin 1.5s steps(4);

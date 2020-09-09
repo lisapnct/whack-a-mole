@@ -1,98 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./app.js" type="module"></script>
-    <link rel="stylesheet" href="./style.css">
-    <script src="https://kit.fontawesome.com/53f3559526.js" crossorigin="anonymous"></script>
-    <title>Whack a mole</title>
-</head>
-<body>
-
-    <header class="header">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/index.css"/>
+    <title>WHACK A MOLE</title>
+  </head>
+  <body>
+    <div class="flex">
+      <div class="flex-container">
+        <img src="./img/mole-hit.png" alt="bob">
         <h1>WHACK A MOLE</h1>
-
-        <div class="modes-btn">
-            <button id="more-lives-btn">BUY 1 EXTRA LIFE</button>
-            <label id="more-life-label" for="more-lives-btn">costs 5 (</label>
-            <!-- <button id="super-hammer-btn">SUPER HAMMER</button> -->
-        </div>
-        
-        <h3>Your score:<br><span id="score">0</span> points</h3>
-
-        <h3>Your money:<br><span id="coins">0</span> coins</h>
-
-        <h3>
-            <span id="lives">
-                <i class="fas fa-heart" id="heart-one"></i>
-                <i class="fas fa-heart" id="heart-two"></i>
-                <i class="fas fa-heart" id="heart-three"></i>
-            </span>
-        </h3>
-            
-    </header>
-
-    <div class="grid">
-        <div class="grid-container">
-            <div class="square" id="1">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="2">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="3">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="4">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="5">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="6">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="7">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="8">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="9">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="10">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="11">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="12">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="13">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="14">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="15">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="16">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="17">
-                <p class="hole"></p>
-            </div>
-            <div class="square" id="18">
-                <p class="hole"></p>
-            </div>
-
-   
-        </div>
+        <p>Touch the moles, don't touch Bob!</p>
+        <button class="start-btn"><a href="./game.html">PLAY NOW</a></button>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>
