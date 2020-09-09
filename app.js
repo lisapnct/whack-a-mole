@@ -2,9 +2,12 @@ const hole = document.querySelectorAll(".hole");
 const mole = document.querySelectorAll(".mole");
 const lives = document.querySelector("#lives");
 const score = document.querySelector("#score");
+const endScore = document.querySelector("#end-score");
 const coins = document.querySelector("#coins");
 const buyLifeBtn = document.querySelector("#more-lives-btn");
 const buyLifeBtnLabel = document.querySelector("#more-life-label");
+const gameOverWindow = document.querySelector("#game-over-window");
+const restartBtn = document.querySelector(".restart-btn");
 
 let totalLives = 3;
 let totalCoins = 0;
@@ -25,13 +28,14 @@ function displayMole() {
 }
 
 function hideMole() {
-  console.log('clearing moles')
+  console.log("clearing moles");
   hole.forEach((hole) => {
     hole.classList.remove("mole");
     hole.classList.remove("mole-hit");
   });
 }
 
+// moles should move faster and faster depending on score
 function moveMole() {
   if (finalScore < 5) {
     setInterval(displayMole, 5000);
@@ -42,7 +46,7 @@ function moveMole() {
   } else if (finalScore > 10) {
     setInterval(displayMole, 5000);
     setInterval(hideMole, 6000);
-  } 
+  }
   // else if (finalScore > 15) {
   //   setInterval(displayMole, 1000);
   //   setInterval(hideMole, 3000);
@@ -63,7 +67,7 @@ function displayBob() {
 }
 
 function hideBob() {
-  console.log('clearing bobs')
+  console.log("clearing bobs");
   hole.forEach((hole) => {
     hole.classList.remove("bob");
     hole.classList.remove("bob-hit");
@@ -146,20 +150,26 @@ function displayLives() {
     lives.innerHTML = `<i class="far fa-heart" id="heart-one"></i>
     <i class="far fa-heart" id="heart-two"></i>
     <i class="far fa-heart" id="heart-three"></i>`;
-
-    alert("GAME OVER!! Your final score is: " + finalScore + "points");
+    gameOver();
   }
+}
+
+// DISPLAY GAME OVER WINDOW
+
+function gameOver() {
+  gameOverWindow.classList.remove("hidden");
+  endScore.innerText = `${finalScore}`;
 }
 
 // CALCULATE AND DISPLAY SCORE
 
 function calculateScore(clickedHole) {
   // on click on a mole : +1 point
-  console.log('clicked on: ' + clickedHole.classList);
+  console.log("clicked on: " + clickedHole.classList);
   if (clickedHole.classList.contains("mole")) {
     clickedHole.classList.replace("mole", "mole-hit");
     // console.log("it's a mole");
-    console.log('new class list: ' + clickedHole.classList);
+    console.log("new class list: " + clickedHole.classList);
     finalScore = finalScore + 1;
     score.innerText = finalScore;
     console.log(`score = ${finalScore}`);
@@ -169,7 +179,7 @@ function calculateScore(clickedHole) {
   if (clickedHole.classList.contains("bob")) {
     clickedHole.classList.replace("bob", "bob-hit");
     // console.log("it's bob!!");
-    console.log('new class list: ' + clickedHole.classList);
+    console.log("new class list: " + clickedHole.classList);
     if (finalScore >= 1) {
       finalScore = finalScore - 1;
       score.innerText = finalScore;
@@ -198,13 +208,14 @@ hole.forEach((hole) => {
     calculateScore(clickedHole);
     calculateCoins(clickedHole);
     calculateLives(clickedHole);
+    // disable click on the child
   });
 });
 
 // listen to clicks on "buy 1 extra life" btn
 buyLifeBtn.addEventListener("click", buyLife);
 
-
+restartBtn.addEventListener("click", () => window.location.reload(true));
 
 // LAUNCH THE GAME ON PAGE LOAD
 window.addEventListener("load", () => {
