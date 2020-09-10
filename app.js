@@ -165,6 +165,7 @@ function buyLife() {
   totalCoins = totalCoins - 2;
   coins.innerText = totalCoins;
   totalLives = totalLives + 1;
+  newLife();
   displayLives();
   displayBuyLifeBtn();
 }
@@ -194,7 +195,7 @@ function displayLives() {
 
 function gameOver() {
   gameOverWindow.classList.remove("hidden");
-  soundGameOver();
+  setTimeout(soundGameOver, 500);
   endScore.innerText = `${finalScore}`;
 }
 
@@ -263,6 +264,11 @@ function soundGameOver() {
 
 function soundGetReady() {
   var audio = new Audio("./sounds/getready.m4a");
+  audio.play();
+}
+
+function newLife() {
+  var audio = new Audio("./sounds/livesup.m4a");
   audio.play();
 }
 
