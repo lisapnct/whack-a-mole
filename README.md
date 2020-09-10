@@ -1,4 +1,4 @@
-# whack-a-mole
+# Whack A Mole Game
 Ironhack week 3 game project
 
 Whack as many moles as you can but never touch Bob! 
