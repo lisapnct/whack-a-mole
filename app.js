@@ -129,6 +129,27 @@ function displayLives() {
   displayBuyLifeBtn();
 }
 
+function displayBuyLifeBtn() {
+  console.log(totalLives);
+  if (totalCoins >= 2 && totalLives < 3) {
+    buyLifeBtn.style.visibility = "visible";
+    buyLifeBtnLabel.style.visibility = "visible";
+  } else {
+    buyLifeBtn.style.visibility = "hidden";
+    buyLifeBtnLabel.style.visibility = "hidden";
+  }
+}
+
+function buyLife() {
+  console.log("wants to buy one life");
+  totalCoins = totalCoins - 2;
+  coins.innerText = totalCoins;
+  totalLives = totalLives + 1;
+  newLife();
+  displayLives();
+  displayBuyLifeBtn();
+}
+
 function kill(hole, who) {
   // who represents a css class : can be mole or bob
   hole.classList.replace(who, `${who}-hit`);
@@ -162,196 +183,18 @@ const handleClick = (evt) => {
   setLevel();
 };
 
+// EVENT LISTENERS
+
 hole.forEach((hole) => (hole.onmouseup = handleClick));
 requestAnimationFrame(draw);
 
-/////////////////
+// listen to clicks on "buy 1 extra life" btn
+buyLifeBtn.addEventListener("click", buyLife);
 
-// function displayMole(himeTiming) {
-//   const available = container.querySelectorAll(
-//     ".hole:not(.bob), .hole:not(.coin)"
-//   );
-//   const randomPosition = available[Math.floor(Math.random() * 18)];
-//   randomPosition.classList.add("mole");
-//   randomPosition.onanimationend = (evt) => {
-//     console.log("end anim !!!");
+restartBtn.addEventListener("click", () => window.location.reload(true));
 
-//     moleRemoveIntervalID = setTimeout(
-//       () => removeOneMole(randomPosition),
-//       himeTiming
-//     );
-//   };
-//   //clbk(randomPosition);
-// }
+soundGetReady();
 
-// function removeMole() {
-//   console.log("clearing moles");
-//   hole.forEach((hole) => {
-//     hole.classList.remove("mole");
-//     hole.classList.remove("mole-hit");
-//   });
-// }
-
-// function removeOneMole(hole) {
-//   hole.classList.remove("mole");
-//   hole.classList.remove("mole-hit");
-// }
-
-// // moles should move faster and faster depending on score
-// const mySetInterval = (clbk, timing) => setInterval(clbk, timing);
-// //const clearInterval = (id) => clearInterval(id);
-
-// function removeIntervals() {
-//   clearInterval(moleDisplayIntervalID);
-//   //clearInterval(moleRemoveIntervalID);
-//   clearTimeout(moleRemoveIntervalID);
-//   console.log("removed intervals done");
-// }
-
-// function increaseSpeed(displayTiming, himeTiming) {
-//   moleDisplayIntervalID = mySetInterval(() => {
-//     displayMole(himeTiming);
-//   }, displayTiming);
-//   //moleRemoveIntervalID = mySetInterval(removeMole, himeTiming);
-// }
-
-// function moveMole() {
-//   if (finalScore > 5 && finalScore < 10) {
-//     removeIntervals();
-//     increaseSpeed(2000, 2500);
-//   } else if (finalScore > 10) {
-//     removeIntervals();
-//     increaseSpeed(2000, 1000);
-//   } else {
-//     increaseSpeed(3000, 2000);
-//   }
-//   //moveMole()
-//   //requestAnimationFrame(moveMole);
-// }
-
-// DISPLAY BOB ON THE GRID
-
-// function displayBob() {
-//   let randomPosition = hole[Math.floor(Math.random() * 18)];
-//   if (randomPosition.classList.contains("mole")) {
-//     displayBob();
-//   } else if (randomPosition.classList.contains("coin")) {
-//     displayBob();
-//   } else {
-//     randomPosition.classList.add("bob");
-//   }
-// }
-
-// function hideBob() {
-//   console.log("clearing bobs");
-//   hole.forEach((hole) => {
-//     hole.classList.remove("bob");
-//     hole.classList.remove("bob-hit");
-//   });
-// }
-
-// function moveBob() {
-//   setInterval(displayBob, 4000);
-//   setInterval(hideBob, 10000);
-// }
-
-// DISPLAY COINS ON THE GRID
-
-// function displayCoin() {
-//   let randomPosition = hole[Math.floor(Math.random() * 18)];
-//   if (randomPosition.classList.contains("mole")) {
-//     displayCoin();
-//   } else if (randomPosition.classList.contains("bob")) {
-//     displayCoin();
-//   } else {
-//     randomPosition.classList.add("coin");
-//   }
-// }
-
-// function hideCoin() {
-//   hole.forEach((hole) => {
-//     hole.classList.remove("coin");
-//     hole.classList.remove("coin-hit");
-//   });
-// }
-
-// function moveCoin() {
-//   setInterval(displayCoin, 5000);
-//   setInterval(hideCoin, 6000);
-// }
-
-// CALCULATE AND DISPLAY LIVES (TOP RIGHT) + BUY LIFE BTN
-
-// function calculateLives(clickedHole) {
-//   if (clickedHole.classList.contains("bob-hit")) {
-//     totalLives = totalLives - 1;
-//     console.log(`lives left: ` + totalLives);
-//     looseLife(); // display the right # of hearts
-//     displayBuyLifeBtn(); // check if conditions to display the btn are now valid
-//   }
-// }
-
-function displayBuyLifeBtn() {
-  console.log(totalLives);
-  if (totalCoins >= 2 && totalLives < 3) {
-    buyLifeBtn.style.visibility = "visible";
-    buyLifeBtnLabel.style.visibility = "visible";
-  } else {
-    buyLifeBtn.style.visibility = "hidden";
-    buyLifeBtnLabel.style.visibility = "hidden";
-  }
-}
-
-function buyLife() {
-  console.log("wants to buy one life");
-  totalCoins = totalCoins - 2;
-  coins.innerText = totalCoins;
-  totalLives = totalLives + 1;
-  newLife();
-  displayLives();
-  displayBuyLifeBtn();
-}
-
-// CALCULATE AND DISPLAY SCORE
-
-// function calculateScore(clickedHole) {
-//   // on click on a mole : +1 point
-//   console.log("clicked on: " + clickedHole.classList);
-//   if (clickedHole.classList.contains("mole")) {
-//     soundMoleHit();
-//     clickedHole.classList.replace("mole", "mole-hit");
-//     console.log("new class list: " + clickedHole.classList);
-//     finalScore = finalScore + 1;
-//     score.innerText = finalScore;
-//     console.log(`score = ${finalScore}`);
-//     moveMole();
-//   }
-//   //on click on Bob: -1 point && -1 life
-//   if (clickedHole.classList.contains("bob")) {
-//     soundBobHit();
-//     clickedHole.classList.replace("bob", "bob-hit");
-//     // console.log("it's bob!!");
-//     console.log("new class list: " + clickedHole.classList);
-//     if (finalScore >= 1) {
-//       finalScore = finalScore - 1;
-//       score.innerText = finalScore;
-//       console.log(`-1point -> score = ${finalScore}`);
-//     }
-//   }
-// }
-
-// CALCULATE # OF COINS
-
-// function calculateCoins(clickedHole) {
-//   if (clickedHole.classList.contains("coin")) {
-//     soundCoinHit();
-//     clickedHole.classList.replace("coin", "coin-hit");
-//     console.log("it's a coin!");
-//     totalCoins = totalCoins + 1;
-//     coins.innerText = totalCoins;
-//   }
-//   displayBuyLifeBtn();
-// }
 
 // PLAY SOUNDS
 
@@ -384,30 +227,3 @@ function newLife() {
   var audio = new Audio("./sounds/livesup.m4a");
   audio.play();
 }
-
-// EVENT LISTENERS
-
-// listen to all clicks: calculate score, lives and coins for each click
-// hole.forEach((hole) => {
-//   hole.addEventListener("mouseup", (evt) => {
-//     let clickedHole = evt.target;
-//     calculateScore(clickedHole);
-//     calculateCoins(clickedHole);
-//     calculateLives(clickedHole);
-//     // disable click on the child
-//   });
-// });
-
-// listen to clicks on "buy 1 extra life" btn
-buyLifeBtn.addEventListener("click", buyLife);
-
-restartBtn.addEventListener("click", () => window.location.reload(true));
-
-// LAUNCH THE GAME ON PAGE LOAD
-
-//var frameId = requestAnimationFrame(moveMole);
-// moveMole();
-// moveBob();
-// moveCoin();
-
-soundGetReady();
