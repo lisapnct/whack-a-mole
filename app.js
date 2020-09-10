@@ -35,8 +35,11 @@ function getAvailableHoles() {
   return [...container.querySelectorAll(".hole")].filter(
     (hole) =>
       !hole.classList.contains("mole") &&
+      !hole.classList.contains("mole-hit") &&
       !hole.classList.contains("bob") &&
-      !hole.classList.contains("coin")
+      !hole.classList.contains("bob-hit") &&
+      !hole.classList.contains("coin") &&
+      !hole.classList.contains("coin-hit")
   );
 }
 
