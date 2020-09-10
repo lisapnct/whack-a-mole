@@ -74,6 +74,7 @@ a {
   column-gap: 0px;
   width: 900px;
   height: 450px;
+  cursor: url("../img/hammer.png"), pointer;
 }
 
 .square {
@@ -91,6 +92,7 @@ a {
   width: 103px;
   margin: 0px;
   text-align: center;
+  cursor: url("../img/hammer.png"), pointer;
 }
 
 .bob {
@@ -99,13 +101,15 @@ a {
   height: 108px;
   background-position: 103px;
   animation: bob 1.5s steps(4);
+  cursor: url("../img/hammer.png"), pointer;
 }
 
 .bob-hit {
   background: url("../img/bob-hit.png");
-  background-repeat: no-repeat;
-  width: 103px;
+  /* background-repeat: no-repeat; */
+  width: 105px;
   height: 108px;
+  cursor: url("../img/hammer.png"), pointer;
 }
 
 .mole {
@@ -114,21 +118,15 @@ a {
   height: 108px;
   background-position: 103px;
   animation: mole 1.5s steps(4);
+  cursor: url("../img/hammer.png"), pointer;
 }
-
-/* .mole-hide {
-  background: url("../img/moles-sprite.png");
-  width: 103px;
-  height: 108px;
-  background-position: 412px;
-  animation: mole-hide 1.5s steps(4);
-} */
 
 .mole-hit {
   background: url("../img/mole-hit.png");
   background-repeat: no-repeat;
   width: 103px;
   height: 108px;
+  cursor: url("../img/hammer.png"), pointer;
 }
 
 .coin {
@@ -137,6 +135,7 @@ a {
   height: 108px;
   background-position: 103px;
   animation: coin 1.5s steps(4);
+  cursor: url("../img/hammer.png"), pointer;
 }
 
 .coin-hit {
@@ -144,6 +143,7 @@ a {
   background-repeat: no-repeat;
   width: 103px;
   height: 108px;
+  cursor: url("../img/hammer.png"), pointer;
 }
 
 #score {
