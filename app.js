@@ -43,13 +43,13 @@ function displayMole(himeTiming) {
   //clbk(randomPosition);
 }
 
-function removeMole() {
-  console.log("clearing moles");
-  hole.forEach((hole) => {
-    hole.classList.remove("mole");
-    hole.classList.remove("mole-hit");
-  });
-}
+// function removeMole() {
+//   console.log("clearing moles");
+//   hole.forEach((hole) => {
+//     hole.classList.remove("mole");
+//     hole.classList.remove("mole-hit");
+//   });
+// }
 
 function removeOneMole(hole) {
   hole.classList.remove("mole");
@@ -82,7 +82,7 @@ function moveMole() {
     removeIntervals();
     increaseSpeed(2000, 1000);
   } else {
-    increaseSpeed(5000, 5000);
+    increaseSpeed(3000, 2000);
   }
   //moveMole()
   //requestAnimationFrame(moveMole);
@@ -135,8 +135,8 @@ function hideCoin() {
 }
 
 function moveCoin() {
-  setInterval(displayCoin, 7000);
-  setInterval(hideCoin, 5000);
+  setInterval(displayCoin, 5000);
+  setInterval(hideCoin, 6000);
 }
 
 // CALCULATE AND DISPLAY LIVES (TOP RIGHT) + BUY LIFE BTN
@@ -194,6 +194,7 @@ function displayLives() {
 
 function gameOver() {
   gameOverWindow.classList.remove("hidden");
+  soundGameOver();
   endScore.innerText = `${finalScore}`;
 }
 
@@ -203,6 +204,7 @@ function calculateScore(clickedHole) {
   // on click on a mole : +1 point
   console.log("clicked on: " + clickedHole.classList);
   if (clickedHole.classList.contains("mole")) {
+    soundMoleHit();
     clickedHole.classList.replace("mole", "mole-hit");
     console.log("new class list: " + clickedHole.classList);
     finalScore = finalScore + 1;
@@ -212,6 +214,7 @@ function calculateScore(clickedHole) {
   }
   //on click on Bob: -1 point && -1 life
   if (clickedHole.classList.contains("bob")) {
+    soundBobHit();
     clickedHole.classList.replace("bob", "bob-hit");
     // console.log("it's bob!!");
     console.log("new class list: " + clickedHole.classList);
@@ -227,12 +230,40 @@ function calculateScore(clickedHole) {
 
 function calculateCoins(clickedHole) {
   if (clickedHole.classList.contains("coin")) {
+    soundCoinHit();
     clickedHole.classList.replace("coin", "coin-hit");
     console.log("it's a coin!");
     totalCoins = totalCoins + 1;
     coins.innerText = totalCoins;
   }
   displayBuyLifeBtn();
+}
+
+// PLAY SOUNDS
+
+function soundBobHit() {
+  var audio = new Audio("./sounds/bobhit.wav");
+  audio.play();
+}
+
+function soundMoleHit() {
+  var audio = new Audio("./sounds/molehit.m4a");
+  audio.play();
+}
+
+function soundCoinHit() {
+  var audio = new Audio("./sounds/coinhit.m4a");
+  audio.play();
+}
+
+function soundGameOver() {
+  var audio = new Audio("./sounds/gameover.m4a");
+  audio.play();
+}
+
+function soundGetReady() {
+  var audio = new Audio("./sounds/getready.m4a");
+  audio.play();
 }
 
 // EVENT LISTENERS
@@ -259,3 +290,5 @@ restartBtn.addEventListener("click", () => window.location.reload(true));
 moveMole();
 moveBob();
 moveCoin();
+
+soundGetReady();
