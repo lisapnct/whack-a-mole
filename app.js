@@ -46,7 +46,7 @@ function getRandomInt(min, max) {
 
 function display(cssClass, hideTiming) {
   const availableHoles = getAvailableHoles(); // get only .hole without mole nor bob nor coin
-  console.log(availableHoles);
+  // console.log(availableHoles);
   if (!availableHoles.length) return; // no available holes
   const randomHole = availableHoles[getRandomInt(0, availableHoles.length - 1)]; // pick one available hole
   randomHole.classList.add(cssClass); // add appropriate css class
@@ -130,7 +130,7 @@ function displayLives() {
 }
 
 function displayBuyLifeBtn() {
-  console.log(totalLives);
+  // console.log(totalLives);
   if (totalCoins >= 2 && totalLives < 3) {
     buyLifeBtn.style.visibility = "visible";
     buyLifeBtnLabel.style.visibility = "visible";
@@ -141,7 +141,7 @@ function displayBuyLifeBtn() {
 }
 
 function buyLife() {
-  console.log("wants to buy one life");
+  // console.log("wants to buy one life");
   totalCoins = totalCoins - 2;
   coins.innerText = totalCoins;
   totalLives = totalLives + 1;
