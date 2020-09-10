@@ -170,7 +170,8 @@ const handleClick = (evt) => {
     soundBobHit();
     kill(clickedHole, "bob"); // damn !
     looseLife();
-    setScore(-1); // decrement score
+    if (finalScore <= 0) return;
+    if (finalScore > 0) setScore(-1);
   } else if (isMole) {
     soundMoleHit();
     kill(clickedHole, "mole"); // aiiiight
@@ -194,7 +195,6 @@ buyLifeBtn.addEventListener("click", buyLife);
 restartBtn.addEventListener("click", () => window.location.reload(true));
 
 soundGetReady();
-
 
 // PLAY SOUNDS
 
