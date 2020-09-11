@@ -134,7 +134,7 @@ function displayLives() {
 
 function displayBuyLifeBtn() {
   // console.log(totalLives);
-  if (totalCoins >= 2 && totalLives < 3) {
+  if (totalCoins >= 5 && totalLives < 3) {
     buyLifeBtn.style.visibility = "visible";
     buyLifeBtnLabel.style.visibility = "visible";
   } else {
@@ -145,7 +145,7 @@ function displayBuyLifeBtn() {
 
 function buyLife() {
   // console.log("wants to buy one life");
-  totalCoins = totalCoins - 2;
+  totalCoins = totalCoins - 5;
   coins.innerText = totalCoins;
   totalLives = totalLives + 1;
   newLife();
